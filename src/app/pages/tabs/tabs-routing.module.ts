@@ -5,6 +5,11 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
     {
+        path: '',
+        redirectTo: '/tabs/create',
+        pathMatch: 'full'
+    },
+    {
         path: 'tabs',
         component: TabsPage,
         children: [
