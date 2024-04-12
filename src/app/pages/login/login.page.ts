@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginPage implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private authService: AuthService,
+        private router: Router,
     ) {
         this.loginForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
@@ -23,15 +25,14 @@ export class LoginPage implements OnInit {
         });
 
         // TODO: fix comparación passwords:
-        // { validators: this.matchPassword('password', 'passwordConfirm')
     }
 
     async ngOnInit() {
-        console.log('here')
+        await this.setValidators();
     }
 
     async setValidators() {
-        if (this.sigInForm) {
+        if (!this.sigInForm) {
             this.loginForm.get('passwordConfirm')?.clearValidators();
         } else {
             this.loginForm.get('passwordConfirm')?.addValidators([Validators.required, Validators.minLength(5)]);
@@ -43,21 +44,9 @@ export class LoginPage implements OnInit {
         await this.setValidators();
     }
 
-    async matchPassword(password: string, passwordConfirm: string) {
-        return (group: FormGroup) => {
-            let passwordInput = group.controls[password];
-            let passwordConfirmInput = group.controls[passwordConfirm];
-
-            if (passwordInput.invalid || passwordInput.value != passwordConfirmInput.value) {
-                // Valores no coinciden
-                return passwordConfirmInput.setErrors({ notEquivalent: true });
-            } else {
-                return passwordConfirmInput.setErrors(null);
-            }
-        }
-    }
-
     async onSubmit() {
-        await this.authService.login();
+        const result = await this.authService.login();
+
+        if(result) this.router.navigate(['/tabs/create']);
     }
 }
