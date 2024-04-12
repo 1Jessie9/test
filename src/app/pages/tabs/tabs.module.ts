@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
-import { HeaderPageModule } from '../header/header.module';
 
 @NgModule({
     imports: [
@@ -15,11 +14,7 @@ import { HeaderPageModule } from '../header/header.module';
         FormsModule,
         IonicModule,
         TabsPageRoutingModule,
-        HeaderPageModule,
     ],
     declarations: [TabsPage],
-    schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-    ]
 })
 export class TabsPageModule { }

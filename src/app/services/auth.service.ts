@@ -23,10 +23,17 @@ export class AuthService {
 
     async login() {
         try {
-            const result: any = await firstValueFrom(this.httpClient.get("https://jsonplaceholder.typicode.com/todos/1"));
+            await fetch('https://jsonplaceholder.typicode.com/todos/1')
+                .then(async (response) => response.json())
+                .then(async (result) => {
+                    console.log(result)
+                    this.userData = {
+                        id: result.id,
+                        title: result.title,
+                    };
+                });
 
-            this.userData = result;
-            return result;
+            return true;
         } catch (error) {
             console.log("Error iniciando sesión", error);
             return null;

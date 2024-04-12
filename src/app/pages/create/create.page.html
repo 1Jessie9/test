@@ -1,3 +1,9 @@
 <ion-content [fullscreen]="true">
+    <ion-header [translucent]="true" *ngIf="authService.userData?.title">
+        <ion-toolbar>
+            <ion-title>¡Hola, {{authService.userData.title}}!</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
     <p>Crear solicitud</p>
 </ion-content>
