@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+    <div class="contain-login">
+        <header class="contain-header">
+            <h5 class="title">¡Hola!</h5>
+        </header>
+
+        <main class="contain-main">
+            <!-- Selección de sección -->
+            <section class="segment">
+                <ion-segment value="login" (ionChange)="changeSegment()">
+                    <ion-segment-button value="login">
+                        <ion-label>Ingresar</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button value="sigin">
+                        <ion-label>Crear cuenta</ion-label>
+                    </ion-segment-button>
+                </ion-segment>
+            </section>
+
+            <!-- Formulario -->
+            <section class="form">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <ion-item>
+                        <ion-input labelPlacement="floating" [formControlName]="'email'" type="email">
+                            <div slot="label">Correo electrónico <ion-text color="danger">(Obligatorio)</ion-text></div>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input labelPlacement="floating" [formControlName]="'document'" type="number">
+                            <div slot="label">Número de documento <ion-text color="danger">(Obligatorio)</ion-text>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input labelPlacement="floating" [formControlName]="'password'" type="password">
+                            <div slot="label">Contraseña <ion-text color="danger">(Obligatorio)</ion-text></div>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="sigInForm">
+                        <ion-input labelPlacement="floating" [formControlName]="'passwordConfirm'" type="password">
+                            <div slot="label">Confirmar contraseña <ion-text color="danger">(Obligatorio)</ion-text>
+                            </div>
+                        </ion-input>
+                    </ion-item>
+
+                    <div class="contain-btn">
+                        <ion-button size="large" class="btn-primary" type="submit"
+                            [disabled]="loginForm.invalid">Registrar</ion-button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+</ion-content>

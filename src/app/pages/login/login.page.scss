@@ -1,0 +1,31 @@
+.contain-login {
+    max-width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+    justify-content: center;
+
+    .contain-header {
+        .title {
+            font-size: 20px;
+            color: var(--ion-color-primary);
+        }
+    }
+
+    .contain-main {
+        align-self: center;
+        text-align: -webkit-center;
+
+        .segment {
+            width: 40em;
+            max-width: 90%;
+            margin: 50px 0;
+        }
+
+        .contain-btn {
+            margin-top: 30px;
+        }
+    }
+}
