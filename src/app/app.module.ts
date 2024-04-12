@@ -18,9 +18,6 @@ import { HeaderPageModule } from './pages/header/header.module';
         HttpClientModule,
         HeaderPageModule,
     ],
-    schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-    ],
     providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
     bootstrap: [AppComponent],
 })

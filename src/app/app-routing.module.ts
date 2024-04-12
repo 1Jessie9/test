@@ -23,10 +23,6 @@ const routes: Routes = [
         redirectTo: 'home',
         pathMatch: 'full'
     },
-  {
-    path: 'header',
-    loadChildren: () => import('./pages/header/header.module').then( m => m.HeaderPageModule)
-  },
 ];
 
 @NgModule({
